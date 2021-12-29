@@ -140,9 +140,9 @@ public class PluginYaml implements Filter {
 	  public void flushBuffer()
               throws java.io.IOException {
 	      if ("application/json".equalsIgnoreCase(super.getContentType())) {
-		      log.fine("PluginYaml ServletResponseWrapperCopier flushBuffer() replacing response content");
-	    	  JsonNode jsonNodeTree = new ObjectMapper().readTree(capture.toByteArray());
 	    	  if (CONTENT_TYPE_YAML.equalsIgnoreCase(acceptsHeader)) {
+		      log.fine("PluginYaml ServletResponseWrapperCopier flushBuffer() replacing response content");
+	    	      JsonNode jsonNodeTree = new ObjectMapper().readTree(capture.toByteArray());
 		    	  byte[] jsonAsYaml = new YAMLMapper().writeValueAsBytes(jsonNodeTree);
 		    	  super.setContentType(CONTENT_TYPE_YAML);
 		    	  super.getOutputStream().write(jsonAsYaml);
